@@ -28,15 +28,19 @@ class Node:
 
 class NoDict:
     def __init__(self, num_buckets=10):
-        self.buckets = None
+        self.buckets = [ [] for _ in range(num_buckets) ]
+        self.bucket_list = self.buckets
         # Your code here
 
     def __repr__(self):
         # Your code here
-        return
+        return '\n'.join([f'{self.__class__.__name__}.{i}:{bucket}' for i, bucket in enumerate(self.buckets)])
 
     def add(self, key, value):
-        # Your code here
+        new_node = Node(key, value)
+        bucket_index = hash(new_node) % self.buckets
+        # Stuck here. Not sure if this is how to attain index of bucket.
+        
         return
 
     def get(self, key):
